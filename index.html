@@ -1,205 +1,345 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon | Portfolio</title>
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.77/build/spline-viewer.js"></script>
+    <title>Hafiz Muhammad Abdullah Khan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        background: '#050505',
+                        surface: '#0A0A0A',
+                        surfaceHighlight: '#121212',
+                        border: '#222222',
+                        primary: '#EAEAEA',
+                        secondary: '#888888',
+                    },
+                    letterSpacing: {
+                        tighter: '-0.04em',
+                        tight: '-0.02em',
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #000000;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            height: 100vh;
-            width: 100vw;
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
-        }
-
-        /* Pure White Apple Loader - Left to Right */
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .apple-line-loader {
-            width: 200px;
-            height: 3px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 2px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .apple-line-progress {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 30%;
-            background: #ffffff;
-            border-radius: 2px;
-            animation: appleLineMove 1.5s linear infinite;
-        }
-
-        @keyframes appleLineMove {
-            0% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(400%);
-            }
-        }
-
-        .spline-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        spline-viewer {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-
-        /* Hide Spline logo completely */
-        spline-viewer {
-            --logo-display: none !important;
-        }
-
-        .spline-container ::part(logo),
-        spline-viewer::part(logo) {
-            display: none !important;
-            visibility: hidden !important;
-            opacity: 0 !important;
-            pointer-events: none !important;
-        }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .apple-line-loader {
-                width: 180px;
-                height: 2.5px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .apple-line-loader {
-                width: 160px;
-                height: 2px;
-            }
-        }
-
+        /* Premium minimal scrollbar */
         ::-webkit-scrollbar {
-            display: none;
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Subtle noise texture */
+        .noise-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+        }
+
+        /* Gradient Mask for Marquee */
+        .mask-gradient {
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        
+        /* Smooth fade up animation */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up {
+            animation: fadeUp 0.6s ease-out forwards;
         }
     </style>
 </head>
-<body>
-    <!-- Pure White Apple Line Loader - Left to Right Only -->
-    <div class="preloader" id="preloader">
-        <div class="apple-line-loader">
-            <div class="apple-line-progress"></div>
+<body class="bg-background text-secondary font-sans antialiased selection:bg-white/10 selection:text-white">
+
+    <div class="noise-bg"></div>
+
+    <!-- Top Navigation -->
+    <nav class="fixed top-0 w-full z-40 bg-background/60 backdrop-blur-md border-b border-white/[0.03]">
+        <div class="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
+            <a href="#" class="text-white text-sm font-medium tracking-tight flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <div class="w-5 h-5 bg-white rounded-full flex items-center justify-center">
+                    <span class="text-black text-[10px] font-bold">A</span>
+                </div>
+                Abdullah Khan
+            </a>
+            <div class="hidden md:flex items-center gap-6">
+                <a href="#work" class="text-xs font-medium text-secondary hover:text-white transition-colors">Work</a>
+                <a href="#about" class="text-xs font-medium text-secondary hover:text-white transition-colors">About</a>
+                <a href="#contact" class="text-xs font-medium text-secondary hover:text-white transition-colors">Contact</a>
+            </div>
         </div>
-    </div>
+    </nav>
 
-    <!-- Spline Container -->
-    <div class="spline-container">
-        <spline-viewer url="https://prod.spline.design/u4DvLez-fAzQgMcI/scene.splinecode"></spline-viewer>
-    </div>
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-6 pt-32 md:pt-40 pb-20">
+        
+        <!-- Hero Section -->
+        <section class="animate-fade-up mb-24">
+            <!-- Subtle Spotlight -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-white/[0.03] blur-[100px] rounded-full pointer-events-none -z-10"></div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const preloader = document.getElementById('preloader');
-            const splineViewer = document.querySelector('spline-viewer');
+            <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-white/[0.08] bg-white/[0.03] mb-8">
+                <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]"></div>
+                <span class="text-[11px] font-medium text-primary tracking-wide">AVAILABLE FOR WORK</span>
+            </div>
 
-            // Hide Spline logo
-            function hideSplineLogo() {
-                const style = document.createElement('style');
-                style.textContent = `
-                    .logo, [class*="logo"], [id*="logo"] {
-                        display: none !important;
-                        visibility: hidden !important;
-                        opacity: 0 !important;
-                        width: 0 !important;
-                        height: 0 !important;
-                        margin: -9999px !important;
-                        padding: 0 !important;
-                        overflow: hidden !important;
-                        pointer-events: none !important;
-                    }
-                `;
-                document.head.appendChild(style);
-
-                setInterval(() => {
-                    document.querySelectorAll('*').forEach(el => {
-                        const className = el.className?.toString() || '';
-                        const id = el.id?.toString() || '';
-                        if (className.includes('logo') || id.includes('logo')) {
-                            el.style.cssText = 'display: none !important; visibility: hidden !important; opacity: 0 !important; width: 0 !important; height: 0 !important; margin: -9999px !important; padding: 0 !important; overflow: hidden !important; pointer-events: none !important;';
-                        }
-                    });
-                }, 500);
-            }
-
-            hideSplineLogo();
-
-            // When Spline loads
-            if (splineViewer) {
-                splineViewer.addEventListener('load', function() {
-                    setTimeout(() => {
-                        preloader.style.opacity = '0';
-                        setTimeout(() => {
-                            preloader.style.display = 'none';
-                        }, 600);
-                    }, 1000);
-                });
-            }
-
-            // Fallback - hide after 5 seconds
-            setTimeout(() => {
-                preloader.style.opacity = '0';
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 600);
-            }, 5000);
-        });
-
-        // Responsive
-        function adjustForDevice() {
-            const width = window.innerWidth;
-            const container = document.querySelector('.spline-container');
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium text-primary tracking-tighter mb-6 leading-[1.1]">
+                Full Stack Developer & <br>
+                <span class="text-secondary">Security Specialist.</span>
+            </h1>
             
-            if (width <= 480) {
-                container.style.transform = 'scale(1.15)';
-            } else if (width <= 768) {
-                container.style.transform = 'scale(1.08)';
-            } else {
-                container.style.transform = 'scale(1)';
-            }
-        }
+            <p class="text-base text-secondary max-w-lg leading-relaxed mb-8">
+                Building scalable web applications with ASP.NET & Laravel. 
+                Focused on secure architecture, clean code, and exceptional user experiences.
+                Based in Karachi.
+            </p>
 
-        window.addEventListener('resize', adjustForDevice);
-        window.addEventListener('load', adjustForDevice);
-    </script>
+            <div class="flex items-center gap-4">
+                <a href="#work" class="h-9 px-4 bg-white text-black text-xs font-medium rounded hover:bg-white/90 transition-colors flex items-center justify-center">
+                    View Projects
+                </a>
+                <a href="https://github.com/H-M-Abdullah-Khan" target="_blank" class="h-9 w-9 border border-border rounded flex items-center justify-center text-secondary hover:text-white hover:border-white/20 transition-all bg-surface">
+                    <span class="iconify" data-icon="lucide:github" data-width="16"></span>
+                </a>
+                <a href="mailto:m.abdullahkhan9990@gmail.com" class="h-9 w-9 border border-border rounded flex items-center justify-center text-secondary hover:text-white hover:border-white/20 transition-all bg-surface">
+                    <span class="iconify" data-icon="lucide:mail" data-width="16"></span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Tech Stack Strip -->
+        <section class="mb-24 border-y border-white/[0.03] py-8 relative overflow-hidden">
+            <div class="mask-gradient flex w-full">
+                <div class="flex animate-marquee whitespace-nowrap gap-12 min-w-full justify-center">
+                    <div class="flex items-center gap-2 group">
+                        <span class="iconify text-secondary group-hover:text-white transition-colors" data-icon="lucide:file-code" data-width="16"></span>
+                        <span class="text-xs font-medium text-secondary group-hover:text-white transition-colors">ASP.NET Core</span>
+                    </div>
+                    <div class="flex items-center gap-2 group">
+                        <span class="iconify text-secondary group-hover:text-white transition-colors" data-icon="lucide:layers" data-width="16"></span>
+                        <span class="text-xs font-medium text-secondary group-hover:text-white transition-colors">Laravel</span>
+                    </div>
+                    <div class="flex items-center gap-2 group">
+                        <span class="iconify text-secondary group-hover:text-white transition-colors" data-icon="lucide:database" data-width="16"></span>
+                        <span class="text-xs font-medium text-secondary group-hover:text-white transition-colors">SQL Server</span>
+                    </div>
+                    <div class="flex items-center gap-2 group">
+                        <span class="iconify text-secondary group-hover:text-white transition-colors" data-icon="lucide:shield" data-width="16"></span>
+                        <span class="text-xs font-medium text-secondary group-hover:text-white transition-colors">Cybersecurity</span>
+                    </div>
+                    <div class="flex items-center gap-2 group">
+                        <span class="iconify text-secondary group-hover:text-white transition-colors" data-icon="lucide:terminal" data-width="16"></span>
+                        <span class="text-xs font-medium text-secondary group-hover:text-white transition-colors">Python</span>
+                    </div>
+                    <div class="flex items-center gap-2 group">
+                        <span class="iconify text-secondary group-hover:text-white transition-colors" data-icon="lucide:code-2" data-width="16"></span>
+                        <span class="text-xs font-medium text-secondary group-hover:text-white transition-colors">C#</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Bento Grid -->
+        <section id="work" class="mb-32">
+            <div class="flex items-end justify-between mb-8">
+                <h2 class="text-sm font-medium text-white">Selected Work</h2>
+                <span class="text-xs text-secondary font-mono">03 Projects</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                
+                <!-- Project 1: Online Help Desk -->
+                <div class="md:col-span-2 group relative bg-surface border border-white/[0.04] rounded-lg overflow-hidden hover:border-white/[0.08] transition-all duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 z-10 pointer-events-none"></div>
+                    
+                    <div class="grid md:grid-cols-2 h-full min-h-[320px]">
+                        <div class="p-8 flex flex-col justify-between relative z-20">
+                            <div>
+                                <div class="w-8 h-8 rounded bg-white/[0.05] border border-white/[0.05] flex items-center justify-center mb-6">
+                                    <span class="iconify text-white" data-icon="lucide:ticket" data-width="16"></span>
+                                </div>
+                                <h3 class="text-lg font-medium text-white tracking-tight mb-2">Online Help Desk</h3>
+                                <p class="text-sm text-secondary leading-relaxed mb-6">
+                                    A robust ticketing workflow system designed for facility management. Features role-based access control (RBAC) for Admins, Heads, and End Users.
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-[10px] text-secondary font-mono border border-white/[0.06] px-1.5 py-0.5 rounded">ASP.NET MVC</span>
+                                <span class="text-[10px] text-secondary font-mono border border-white/[0.06] px-1.5 py-0.5 rounded">SQL</span>
+                                <a href="https://github.com/H-M-Abdullah-Khan/Online-Help-Desk" target="_blank" class="text-xs text-white flex items-center gap-1 hover:underline ml-auto">
+                                    Source <span class="iconify" data-icon="lucide:arrow-up-right" data-width="12"></span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- UI Visualization -->
+                        <div class="relative bg-surfaceHighlight/30 border-l border-white/[0.03] overflow-hidden">
+                            <div class="absolute top-8 left-8 right-0 bottom-0 bg-[#0F0F0F] rounded-tl-lg border-t border-l border-white/[0.08] shadow-2xl p-4 transition-transform duration-500 group-hover:-translate-y-1 group-hover:-translate-x-1">
+                                <!-- Mock UI Elements -->
+                                <div class="flex items-center justify-between mb-6 border-b border-white/[0.04] pb-2">
+                                    <div class="w-16 h-2 bg-white/[0.08] rounded-full"></div>
+                                    <div class="flex gap-2">
+                                        <div class="w-4 h-4 rounded-full bg-red-500/10 border border-red-500/20"></div>
+                                        <div class="w-4 h-4 rounded-full bg-blue-500/10 border border-blue-500/20"></div>
+                                    </div>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="h-8 w-full bg-white/[0.03] rounded border border-white/[0.02]"></div>
+                                    <div class="h-8 w-full bg-white/[0.03] rounded border border-white/[0.02]"></div>
+                                    <div class="h-8 w-2/3 bg-white/[0.03] rounded border border-white/[0.02]"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Software Market -->
+                <div class="group relative bg-surface border border-white/[0.04] rounded-lg overflow-hidden hover:border-white/[0.08] transition-all duration-300 h-[300px] flex flex-col">
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                             <div class="w-8 h-8 rounded bg-white/[0.05] border border-white/[0.05] flex items-center justify-center">
+                                <span class="iconify text-white" data-icon="lucide:shopping-bag" data-width="16"></span>
+                            </div>
+                            <a href="#" class="opacity-0 group-hover:opacity-100 transition-opacity text-white">
+                                <span class="iconify" data-icon="lucide:arrow-up-right" data-width="16"></span>
+                            </a>
+                        </div>
+                        <h3 class="text-base font-medium text-white tracking-tight mb-2">Software Market</h3>
+                        <p class="text-xs text-secondary leading-relaxed mb-4">
+                            Multi-vendor ecommerce platform for digital goods. Includes cart functionality, vendor dashboards, and secure checkout flows.
+                        </p>
+                        <div class="mt-auto flex gap-2 pt-4 border-t border-white/[0.04]">
+                            <span class="text-[10px] text-secondary font-mono">Laravel</span>
+                            <span class="text-[10px] text-secondary font-mono">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: The Central Zoo -->
+                <div class="group relative bg-surface border border-white/[0.04] rounded-lg overflow-hidden hover:border-white/[0.08] transition-all duration-300 h-[300px] flex flex-col">
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                             <div class="w-8 h-8 rounded bg-white/[0.05] border border-white/[0.05] flex items-center justify-center">
+                                <span class="iconify text-white" data-icon="lucide:layout-template" data-width="16"></span>
+                            </div>
+                             <a href="https://github.com/H-M-Abdullah-Khan/The-Central-Zoo-FrontEnd-Project" target="_blank" class="opacity-0 group-hover:opacity-100 transition-opacity text-white">
+                                <span class="iconify" data-icon="lucide:arrow-up-right" data-width="16"></span>
+                            </a>
+                        </div>
+                        <h3 class="text-base font-medium text-white tracking-tight mb-2">The Central Zoo</h3>
+                        <p class="text-xs text-secondary leading-relaxed mb-4">
+                            Collaborative frontend project focused on educational content delivery. Built with semantic HTML/CSS and JavaScript with a focus on accessibility.
+                        </p>
+                         <div class="mt-auto flex gap-2 pt-4 border-t border-white/[0.04]">
+                            <span class="text-[10px] text-secondary font-mono">JavaScript</span>
+                            <span class="text-[10px] text-secondary font-mono">UI/UX</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section id="about" class="mb-32 max-w-2xl">
+            <h2 class="text-sm font-medium text-white mb-8">Experience & Education</h2>
+            
+            <div class="relative border-l border-white/[0.08] ml-2 space-y-10">
+                
+                <!-- Item 1 -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-surface border border-white/20 group-hover:border-white group-hover:scale-110 transition-all duration-300"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-1.5">
+                        <h3 class="text-sm font-medium text-white">Diploma in Software Engineering</h3>
+                        <span class="text-xs text-secondary font-mono">2024 — Present</span>
+                    </div>
+                    <div class="text-xs text-secondary mb-3">Aptech Learning</div>
+                    <p class="text-xs text-secondary leading-relaxed max-w-lg">
+                        Advanced Full Stack Web Development and Enterprise App Development. Focusing on .NET architecture and modern PHP frameworks.
+                    </p>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-surface border border-white/20 group-hover:border-white group-hover:scale-110 transition-all duration-300"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-1.5">
+                        <h3 class="text-sm font-medium text-white">Cyber Security Certification</h3>
+                        <span class="text-xs text-secondary font-mono">2023</span>
+                    </div>
+                    <div class="text-xs text-secondary mb-3">Utech & Corvit Institute</div>
+                    <p class="text-xs text-secondary leading-relaxed max-w-lg">
+                        Intensive training in network defense, penetration testing methodologies, and securing web applications against common vulnerabilities.
+                    </p>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-surface border border-white/20 group-hover:border-white group-hover:scale-110 transition-all duration-300"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-1.5">
+                        <h3 class="text-sm font-medium text-white">Instructor & Mentor</h3>
+                        <span class="text-xs text-secondary font-mono">2021 — Present</span>
+                    </div>
+                    <p class="text-xs text-secondary leading-relaxed max-w-lg">
+                        Teaching IT fundamentals and religious studies. Developing curriculum and mentoring students in logical thinking and discipline.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer / Contact -->
+        <section id="contact" class="pt-8 border-t border-white/[0.04]">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div>
+                    <h2 class="text-sm font-medium text-white mb-1">Let's connect</h2>
+                    <p class="text-xs text-secondary">Open to freelance opportunities and collaborations.</p>
+                </div>
+                
+                <div class="flex gap-4">
+                    <a href="mailto:m.abdullahkhan9990@gmail.com" class="text-xs font-medium text-secondary hover:text-white transition-colors">Email</a>
+                    <a href="https://github.com/H-M-Abdullah-Khan" class="text-xs font-medium text-secondary hover:text-white transition-colors">GitHub</a>
+                    <a href="#" class="text-xs font-medium text-secondary hover:text-white transition-colors">LinkedIn</a>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-[10px] text-[#444] font-mono">
+                &copy; 2024 Abdullah Khan. Designed with precision.
+            </div>
+        </section>
+
+    </main>
+
 </body>
 </html>
